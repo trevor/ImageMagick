@@ -42,7 +42,6 @@
 #include "magick/studio.h"
 #include "magick/matrix.h"
 #include "magick/memory_.h"
-#include "magick/utility.h"
 
 /*
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
