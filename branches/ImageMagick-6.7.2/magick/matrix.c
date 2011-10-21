@@ -173,7 +173,7 @@ MagickExport double **AcquireMagickMatrix(const size_t number_rows,
 %  You can also use the 'vectors' to generate an inverse of the given 'matrix'
 %  though as a 'column first array' rather than a 'row first array' (matrix
 %  is transposed). For details see 
-%     http://en.wikipedia.org/wiki/Gauss-Jordan_elimination.
+%     http://en.wikipedia.org/wiki/Gauss-Jordan_elimination
 %
 */
 MagickExport MagickBooleanType GaussJordanElimination(double **matrix,
