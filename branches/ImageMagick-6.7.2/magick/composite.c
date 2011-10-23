@@ -666,12 +666,14 @@ static void CompositeHSB(const MagickRealType red,const MagickRealType green,
     *hue+=1.0;
 }
 
+#if 0
 static inline MagickRealType In(const MagickRealType p,
   const MagickRealType Sa,const MagickRealType magick_unused(q),
   const MagickRealType Da)
 {
   return(Sa*p*Da);
 }
+#endif
 
 static inline void CompositeIn(const MagickPixelPacket *p,
   const MagickPixelPacket *q,MagickPixelPacket *composite)
@@ -684,13 +686,20 @@ static inline void CompositeIn(const MagickPixelPacket *p,
   Sa=1.0-QuantumScale*p->opacity;  /* simplify and speed up equations */
   Da=1.0-QuantumScale*q->opacity;
   gamma=Sa*Da;
+#if 0
   composite->opacity=(MagickRealType) QuantumRange*(1.0-gamma);
+  /* the formula below preserves the 'p' (src) color,
+   * except to set it to black -- if the pixel become fully-transparent
+   */
   gamma=1.0/(fabs(gamma) <= MagickEpsilon ? 1.0 : gamma);
   composite->red=gamma*In(p->red,Sa,q->red,Da);
   composite->green=gamma*In(p->green,Sa,q->green,Da);
   composite->blue=gamma*In(p->blue,Sa,q->blue,Da);
-  if (q->colorspace == CMYKColorspace)
-    composite->index=gamma*In(p->index,Sa,q->index,Da);
+#else
+  /* Simplified to a multiply of the Alpha Channel */
+  *composite=*p;  /* structure copy*/
+  composite->opacity=(MagickRealType) QuantumRange*(1.0-gamma);
+#endif
 }
 
 static inline MagickRealType Lighten(const MagickRealType p,
@@ -1180,12 +1189,14 @@ static inline void CompositeMultiply(const MagickPixelPacket *p,
   }
 }
 
+#if 0
 static inline MagickRealType Out(const MagickRealType p,
   const MagickRealType Sa,const MagickRealType magick_unused(q),
   const MagickRealType Da)
 {
   return(Sa*p*(1.0-Da));
 }
+#endif
 
 static inline void CompositeOut(const MagickPixelPacket *p,
   const MagickPixelPacket *q,MagickPixelPacket *composite)
@@ -1198,6 +1209,7 @@ static inline void CompositeOut(const MagickPixelPacket *p,
   Sa=1.0-QuantumScale*p->opacity;  /* simplify and speed up equations */
   Da=1.0-QuantumScale*q->opacity;
   gamma=Sa*(1.0-Da);
+#if 0
   composite->opacity=(MagickRealType) QuantumRange*(1.0-gamma);
   gamma=1.0/(fabs(gamma) <= MagickEpsilon ? 1.0 : gamma);
   composite->red=gamma*Out(p->red,Sa,q->red,Da);
@@ -1205,6 +1217,11 @@ static inline void CompositeOut(const MagickPixelPacket *p,
   composite->blue=gamma*Out(p->blue,Sa,q->blue,Da);
   if (q->colorspace == CMYKColorspace)
     composite->index=gamma*Out(p->index,Sa,q->index,Da);
+#else
+  /* Simplified to a negated multiply of the Alpha Channel */
+  *composite=*p;  /* structure copy*/
+  composite->opacity=(MagickRealType) QuantumRange*(1.0-gamma);
+#endif
 }
 
 static MagickRealType PegtopLight(const MagickRealType Sca,
