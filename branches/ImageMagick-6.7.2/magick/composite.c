@@ -166,7 +166,10 @@ static inline double MagickMax(const double x,const double y)
 **   Dca = Dc*Da     normalized Dest color divided by Dest alpha
 **   Dc' = Dca'/Da'  the desired color value for this channel.
 **
-** Da' in in the follow formula as 'gamma'  The resulting alpla value.
+** Da' (alpha result) is stored as 'gamma' in the functions.
+**
+** The rest of the functionsi is just simplifications of the above
+** formula on a case by case bases.
 **
 **
 ** Most functions use a blending mode of over (X=1,Y=1,Z=1)
@@ -175,7 +178,7 @@ static inline double MagickMax(const double x,const double y)
 **   gamma = 1 - QuantiumScale*alpha * QuantiumScale*beta;
 **   opacity = QuantiumScale*alpha*beta;  // over blend, optimized 1-Gamma
 **
-** The above SVG definitions also definate that Mathematical Composition
+** The above SVG definitions also define that Mathematical Composition
 ** methods should use a 'Over' blending mode for Alpha Channel.
 ** It however was not applied for composition modes of 'Plus', 'Minus',
 ** the modulus versions of 'Add' and 'Subtract'.
