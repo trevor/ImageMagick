@@ -1,3 +1,6 @@
+2012-01-16  6.7.3-11 Anthony  <A.Thyssen@griffith...>
+  * Modifify SetMagickPrecision() so you can set,get,reset the precision.
+
 2011-12-02  6.7.3-11 Anthony  <A.Thyssen@griffith...>
   * Fixed incorrect 'delta' increment calculation in Equal tile crop
     http://www.imagemagick.org/discourse-server/viewtopic.php?f=3&t=18322).
