@@ -1,5 +1,5 @@
 2012-03-05  6.7.5-10 Cristy  <quetzlzacatenango@image...>
-  * New version 6.7.5-109, SVN revision 7056.
+  * New version 6.7.5-10, SVN revision 7056.
 
 2012-03-05  6.7.5-10 Cristy  <quetzlzacatenango@image...>
   * Fix too many arguments to AnnotateImage() (copy/paste bug).
