@@ -880,7 +880,8 @@ WandExport void MagickSetFirstIterator(MagickWand *wand)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 %  MagickSetIteratorIndex() set the iterator to the position in the image list
-%  specified with the index parameter.
+%  specified with the index parameter.  Negative indexes count from
+%  end of the list.
 %
 %  The format of the MagickSetIteratorIndex method is:
 %
