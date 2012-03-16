@@ -947,10 +947,7 @@ WandExport MagickBooleanType MagickSetIteratorIndex(MagickWand *wand,
     return(MagickFalse);
   image=GetImageFromList(wand->images,index);
   if (image == (Image *) NULL)
-    {
-      InheritException(wand->exception,&wand->images->exception);
       return(MagickFalse);
-    }
   wand->images=image;
   wand->insert_before=MagickFalse;  /* Insert/Add after (this) image */
   wand->image_pending=MagickFalse;  /* NextImage will set next image */
